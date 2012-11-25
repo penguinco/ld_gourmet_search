@@ -25,6 +25,18 @@ open http://blog.livedoor.jp/techblog/archives/65836960.html
 #!!!READ terms of use!!!
 wget ldgourmet.tar.gz # find full path from article.
 tar xzvf ldgourmet.tar.gz
+
+ls -alht data/ldgourmet 
+total 586896
+drwx------@ 9 penguinco  staff   306B 11 24 19:58 .
+drwxr-xr-x  3 penguinco  staff   102B 11 23 20:09 ..
+-rw-r--r--@ 1 penguinco  staff   5.7M  4 22  2011 rating_votes.csv
+-rw-r--r--@ 1 penguinco  staff   224M  4 22  2011 ratings.csv
+-rw-r--r--@ 1 penguinco  staff    15K  4 22  2011 categories.csv
+-rw-r--r--@ 1 penguinco  staff   553K  4 22  2011 stations.csv
+-rw-r--r--@ 1 penguinco  staff   9.3K  4 22  2011 areas.csv
+-rw-r--r--@ 1 penguinco  staff   713B  4 22  2011 prefs.csv
+-rw-r--r--@ 1 penguinco  staff    57M  4 22  2011 restaurants.csv
 ```
 
 ## indexing
