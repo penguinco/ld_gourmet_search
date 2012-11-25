@@ -1,0 +1,7 @@
+{
+  "restaurant" : {
+    "properties" : {
+      "location" : {"type" : "geo_point", "store" : "yes"}
+    }
+  }
+}
