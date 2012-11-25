@@ -1,0 +1,16 @@
+= render 'navigation'
+.result
+  - (@results || []).each do |restaurant|
+    .restaurant
+      .title
+        = link_to restaurant.name, "http://gourmet.livedoor.com/restaurant/#{restaurant.id}"
+      .meta
+        %span.access_count
+          PV:
+          = (restaurant.access_count)
+        %span.category
+          メニュー:
+          = restaurant.category
+      .description
+        住所:
+        = restaurant.address

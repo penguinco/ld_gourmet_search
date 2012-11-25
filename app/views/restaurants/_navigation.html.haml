@@ -1,0 +1,20 @@
+.navigation
+  .search.pull-left
+    %h2
+      お店情報から探す
+    .description
+      Livedoorグルメダンプからお店を検索できます。
+    .form
+      = form_tag 'search', :method => :get, :class => 'form-search' do
+        = text_field_tag 'query', params[:query], :placeholder => '神泉 ラーメン', :class => 'query'
+        = submit_tag 'さがす', :class => "btn"
+  .search.pull-right
+    %h2
+      レビューから探す
+    .description
+      主観的な感想を手がかりに検索できます。
+    .form
+      = form_tag 'review_search', :method => :get, :class => 'form-search' do
+        = text_field_tag 'query', params[:query], :placeholder => '辛い ラーメン', :class => 'query'
+        = submit_tag 'さがす', :class => 'btn'
+.clearfix

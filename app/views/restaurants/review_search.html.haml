@@ -1,0 +1,21 @@
+= render 'navigation'
+.result
+  - (@results || []).each do |result|
+    - restaurant = result[:restaurant]
+    .restaurant
+      .title
+        = link_to restaurant.name, "http://gourmet.livedoor.com/restaurant/#{restaurant.id}"
+      .meta
+        %span.evalueation
+          評価:
+          = result[:rating_count]
+        %span.category
+          メニュー:
+          = restaurant.category
+      .description
+        住所:
+        = restaurant.address
+      - result[:reviews].each do |review|
+        .review
+          %i.icon-comment.icon-black
+          = raw review.highlight.body.join("...")

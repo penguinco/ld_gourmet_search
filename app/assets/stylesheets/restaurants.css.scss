@@ -1,0 +1,38 @@
+// Place all the styles related to the Restaurants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+em {
+  font-weight: bold;
+}
+.navigation {
+  .query {
+    height: 28px;
+  }
+  .search {
+    width: 50%;
+  }
+}
+.result {
+  .restaurant {
+    margin-bottom: 25px;
+    .title {
+      font-weight: bold;
+      font-size: 130%;
+      margin-bottom: 7px;
+    }
+    .meta {
+      font-size: 80%;
+      color: #666;
+      margin-bottom: 2px;
+    }
+    .description {
+      font-size: 80%;
+      width: 400px;
+    }
+    .review {
+      margin-bottom: 4px;
+      font-size: 90%;
+      width: 70%;
+    }
+  }
+}
