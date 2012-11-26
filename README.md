@@ -10,6 +10,17 @@ elasticsearchのデモ用のプロジェクトです。
 download latest elasticsearch http://www.elasticsearch.org/download/
 unzip and ```bin/elasticsearch -f```
 
+install kuromoji
+```shell
+cd elasticsearch
+bin/plugin -install elasticsearch/elasticsearch-analysis-kuromoji/1.0.0
+git clone git://github.com/elasticsearch/elasticsearch-analysis-kuromoji.git
+cd elasticsearch-analysis-kuromoji/
+mvn clean package
+cp target/elasticsearch-analysis-kuromoji-1.2.0-SNAPSHOT.jar ../plugins/analysis-kuromoji/elasticsearch-analysis-kuromoji-1.0.0.jar
+#restart elasticsearch
+```
+
 ### rails app
 ```shell
 bundle install
