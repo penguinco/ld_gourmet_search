@@ -4,51 +4,51 @@ class RestaurantsController < ApplicationController
   end
 
   def search
+    params[:query] = '猫' if params[:query].blank?
     query = params[:query]
-    search = Tire.search 'livedoor_gourmet/restaurant' do
+    search = Tire.search 'nico2/video' do
       query do
         string "#{query}", :default_operator => 'AND', :use_dis_max => true
       end
 
-      filter :term, :closed => '0'
-      sort { by :access_count, 'desc' }
+      facet 'tags' do
+        terms :tag
+      end
     end
 
-    @results = search.results
+    @results = search
 
     render 'search'
   end
 
-  def review_search
+  def timeline
+    params[:query] = '猫' if params[:query].blank?
     query = params[:query]
-    search = Tire.search 'livedoor_gourmet/rating' do
+    search = Tire.search 'nico2/comment' do
       query do
         string "#{query}", :default_operator => 'AND', :use_dis_max => true
       end
 
-      facet 'restaurant_ids' do
-        terms :restaurant_id
-      end
+      facet('timeline') { date :date, :interval => 'day' }
+    end
+    
+    @results = search
+    data_table = GoogleVisualr::DataTable.new
+
+    # Add Column Headers 
+    data_table.new_column('string', '' ) 
+    data_table.new_column('number', 'コメント数') 
+
+    # Add Rows and Values 
+    #
+    data = @results.results.facets['timeline']['entries'].map do |entry|
+      [Time.at(entry['time']/1000).strftime("%Y-%m-%d"), entry['count']]
     end
 
-    @results = []
-    search.results.facets['restaurant_ids']['terms'].each do |restaurant|
-      restaurant_info = Tire.search('livedoor_gourmet/restaurant') { query { string "id:#{restaurant['term']}" } }.results.first
+    data_table.add_rows(data) 
+    option = { width: 800, height: 240, title: '' }
+    @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
 
-      reviews = Tire.search 'livedoor_gourmet/rating' do
-        query do
-          string "body:#{query}", :default_operator => 'AND', :use_dis_max => true
-        end
-        size 2
-        filter :term, :restaurant_id => restaurant['term'].to_i
-        highlight :body => {"fragment_size" => 50, "number_of_fragments" => 2}
-      end.results
-
-      @results << {:restaurant => restaurant_info,
-                   :rating_count => restaurant['count'],
-                   :reviews => reviews
-                  }
-    end
-    render 'review_search'
+    render 'timeline'
   end
 end

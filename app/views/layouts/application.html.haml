@@ -1,4 +1,5 @@
 %html
+  %script{ src: 'http://www.google.com/jsapi' }
   %head
     %title> elasticsearch sample
     = stylesheet_link_tag    "application", media: "all"
@@ -8,6 +9,6 @@
     %header{:class => "navbar navbar-fixed-top navbar-inverse"}
       .navbar-inner
         .container
-          = link_to "Livedoorグルメ検索", '#', id: "logo"
+          = link_to "demo", '#', id: "logo"
     .container
       = yield

@@ -7,9 +7,10 @@ em {
 .navigation {
   .query {
     height: 28px;
+    width: 80%;
   }
   .search {
-    width: 50%;
+    width: 90%;
   }
 }
 .result {
@@ -27,12 +28,6 @@ em {
     }
     .description {
       font-size: 80%;
-      width: 400px;
-    }
-    .review {
-      margin-bottom: 4px;
-      font-size: 90%;
-      width: 70%;
     }
   }
 }

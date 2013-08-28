@@ -1,16 +1,19 @@
 = render 'navigation'
 .result
-  - (@results || []).each do |restaurant|
+  - @results.results.facets['tags']['terms'].each do |tag|
+    .tag
+      = link_to tag['term'], "search?query=#{params[:query]} tag:#{tag['term']}"
+      = number_with_delimiter tag['count']
+  - (@results.results || []).each do |video|
     .restaurant
+      .image
+        = image_tag(video.thumbnail_url)
       .title
-        = link_to restaurant.name.first, "http://gourmet.livedoor.com/restaurant/#{restaurant.id}"
-      .meta
-        %span.access_count
+        = link_to video.title, "http://www.nicovideo.jp/watch/#{video.id}"
+      .info
+        .pv
           PV:
-          = (restaurant.access_count)
-        %span.category
-          メニュー:
-          = restaurant.category
-      .description
-        住所:
-        = restaurant.address
+          = (video.view_counter)
+        .tag
+          タグ:
+          = video.tags.map(&:tag).join(', ')

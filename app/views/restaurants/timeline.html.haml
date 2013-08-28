@@ -5,6 +5,14 @@
     .description
       コメント数の推移を確認できます。内部では、25億のコメントをfacetingして集計しています
     .form
-      = form_tag 'search', :method => :get, :class => 'form-search' do
+      = form_tag 'timeline', :method => :get, :class => 'form-search' do
         = text_field_tag 'query', params[:query], :placeholder => '猫', :class => 'query'
         = submit_tag 'さがす', :class => "btn"
+.result
+  = render_chart(@chart, 'chart')
+  #chart
+  %h3
+    comment
+  - @results.results.each do |entry|
+    .comment
+      = entry.comment
